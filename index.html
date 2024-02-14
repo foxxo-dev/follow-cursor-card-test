@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Foxxo Testing File | Card Cursor Following</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <span class="how_to_use">
+      Move your cursor around the screen to see the card follow it. You can
+      click on the cards title to edit it, to see the full functionality. All 3d
+      functionality is done with CSS, no js!
+    </span>
+    <div class="card">
+      <span class="card_title" contenteditable>Click me to edit!</span>
+    </div>
+    <span class="attributions"
+      >Made by <a href="https://foxxo.studio">Foxxo</a></span
+    >
+  </body>
+  <script>
+    const card = document.querySelector('.card');
+    window.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const clientXPercent = (clientX / window.innerWidth) * 100;
+      const clientYPercent = (clientY / window.innerHeight) * 100;
+      const cursorPositionCentered = {
+        x: (clientXPercent - 50) * 1,
+        y: (clientYPercent - 50) * -1
+      };
+      console.log(cursorPositionCentered);
+
+      card.style.setProperty('--cursor-x', `${cursorPositionCentered.y}deg`);
+      card.style.setProperty('--cursor-y', `${cursorPositionCentered.x}deg`);
+    });
+  </script>
+</html>
